@@ -7,7 +7,7 @@ import java.sql.*;
  */
 public class DataBase {
 
-    private static String dbURL = "jdbc:mysql://localhost/mydatabase";
+    private static String dbURL = "jdbc:mysql://localhost/";
     private static String dbLogin = "root";
     private static String dbPassword = "masha555UB";
     private static String dbDriver = "com.mysql.jdbc.Driver";
@@ -29,8 +29,18 @@ public class DataBase {
     public static void start() throws SQLException{
         connection = getDBConnection();
         stmt = connection.createStatement();
-        stmt.execute("USE mydatabase");
-
+        try {
+            stmt.execute("USE mydatabase");
+        } catch (Exception e){
+            stmt.execute("CREATE DATABASE mydatabase;");
+            stmt.execute("USE mydatabase");
+            stmt.execute("CREATE TABLE Users ("
+                    + "login CHAR(20) NOT NULL,"
+                    + "password CHAR(20) NOT NULL,"
+                    + "city CHAR(20) NOT NULL,"
+                    + "PRIMARY KEY (login)"
+                    + ");");
+        }
     }
 
     public static ResultSet find(String login, String password) throws SQLException{
