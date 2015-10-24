@@ -1,7 +1,9 @@
 package kosshka.mebiusa.Servlets;
 
 import kosshka.mebiusa.Classes.DataBase;
-import kosshka.mebiusa.Classes.Weather;
+import kosshka.mebiusa.Weather.OpenWeatherMapAPI;
+import kosshka.mebiusa.Weather.Weather;
+import kosshka.mebiusa.Weather.WeatherAPI;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +27,16 @@ public class SignInServlet extends HttpServlet {
             if (rs.next()){
                 req.setAttribute("login", rs.getString("login"));
                 req.setAttribute("city", rs.getString("city"));
-                req.setAttribute("temperature", Weather.getWeatherData(rs.getString("city")));
+
+                WeatherAPI openWeatherMapAPI = new OpenWeatherMapAPI();
+                Weather weather = openWeatherMapAPI.getCurrentWeather(rs.getString("city"));
+
+                req.setAttribute("temperature", weather.temperature);
+                req.setAttribute("pressure", weather.pressure);
+                req.setAttribute("humidity",weather.humidity);
+                req.setAttribute("windspeed", weather.windSpeed);
+                req.setAttribute("winddirection", weather.windDirection);
+                req.setAttribute("weatherCondition", weather.weatherCondition);
 
                 RequestDispatcher rd = req.getRequestDispatcher("/weather.jsp");
                 rd.forward(req,resp);

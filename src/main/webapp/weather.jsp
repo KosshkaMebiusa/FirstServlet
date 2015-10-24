@@ -14,7 +14,9 @@
     <br>
     <h2>
         Now in ${city}: <br>
-        ${temperature} degrees <br>
+        ${weatherCondition}<br>
+        ${temperature} degrees, ${pressure} mm Hg, humiduty ${humidity}% <br>
+        wind: speed ${windspeed} m/s, direction: ${winddirection} degrees <br>
      </h2>
 
 </body>

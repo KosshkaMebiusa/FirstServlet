@@ -1,7 +1,6 @@
 package kosshka.mebiusa.Servlets;
 
 import kosshka.mebiusa.Classes.DataBase;
-import kosshka.mebiusa.Classes.Weather;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,7 +26,6 @@ public class SignUpServlet extends HttpServlet {
             DataBase.add(userLogin, userPassword, userCity);
             req.setAttribute("login", userLogin);
             req.setAttribute("city", userCity);
-            req.setAttribute("temperature", Weather.getWeatherData(userCity));
 
             RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
             rd.forward(req,resp);

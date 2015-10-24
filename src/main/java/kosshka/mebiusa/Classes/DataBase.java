@@ -9,7 +9,7 @@ public class DataBase {
 
     private static String dbURL = "jdbc:mysql://localhost/";
     private static String dbLogin = "root";
-    private static String dbPassword = "masha555UB";
+    private static String dbPassword = "mypassword";
     private static String dbDriver = "com.mysql.jdbc.Driver";
 
     private static Connection connection;
