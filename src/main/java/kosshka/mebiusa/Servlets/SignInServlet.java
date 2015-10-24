@@ -4,6 +4,7 @@ import kosshka.mebiusa.Classes.DataBase;
 import kosshka.mebiusa.Weather.OpenWeatherMapAPI;
 import kosshka.mebiusa.Weather.Weather;
 import kosshka.mebiusa.Weather.WeatherAPI;
+import kosshka.mebiusa.Weather.WorldWeatherOnlineAPI;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,15 +27,23 @@ public class SignInServlet extends HttpServlet {
                 req.setAttribute("login", rs.getString("login"));
                 req.setAttribute("city", rs.getString("city"));
 
-                WeatherAPI openWeatherMapAPI = new OpenWeatherMapAPI();
-                Weather weather = openWeatherMapAPI.getCurrentWeather(rs.getString("city"));
+                WeatherAPI weatherAPI = new OpenWeatherMapAPI();
+                Weather weather = weatherAPI.getCurrentWeather(rs.getString("city"));
+                req.setAttribute("temperatureOWM", weather.temperature);
+                req.setAttribute("pressureOWM", weather.pressure);
+                req.setAttribute("humidityOWM",weather.humidity);
+                req.setAttribute("windspeedOWM", weather.windSpeed);
+                req.setAttribute("winddirectionOWM", weather.windDirection);
+                req.setAttribute("weatherConditionOWM", weather.weatherCondition);
 
-                req.setAttribute("temperature", weather.temperature);
-                req.setAttribute("pressure", weather.pressure);
-                req.setAttribute("humidity",weather.humidity);
-                req.setAttribute("windspeed", weather.windSpeed);
-                req.setAttribute("winddirection", weather.windDirection);
-                req.setAttribute("weatherCondition", weather.weatherCondition);
+                weatherAPI = new WorldWeatherOnlineAPI();
+                weather = weatherAPI.getCurrentWeather(rs.getString("city"));
+                req.setAttribute("temperatureWWO", weather.temperature);
+                req.setAttribute("pressureWWO", weather.pressure);
+                req.setAttribute("humidityWWO",weather.humidity);
+                req.setAttribute("windspeedWWO", weather.windSpeed);
+                req.setAttribute("winddirectionWWO", weather.windDirection);
+                req.setAttribute("weatherConditionWWO", weather.weatherCondition);
 
                 RequestDispatcher rd = req.getRequestDispatcher("/weather.jsp");
                 rd.forward(req,resp);

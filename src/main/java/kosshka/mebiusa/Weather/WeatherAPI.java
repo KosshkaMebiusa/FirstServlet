@@ -19,17 +19,12 @@ public interface WeatherAPI {
 
             //reading jsonobject
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuffer json = new StringBuffer(1024);
+            StringBuffer json = new StringBuffer();
             String tmp = "";
             while ((tmp=reader.readLine())!=null)
                 json.append(tmp).append("\n");
             reader.close();
             JSONObject data = new JSONObject(json.toString());
-
-            //Это значение будет равно 404 если ответ не получен
-            if (data.getInt("cod") != 200){
-                return null;
-            }
 
             return data;
         } catch(Exception e) {

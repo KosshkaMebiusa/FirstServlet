@@ -25,6 +25,7 @@ public class WorldWeatherOnlineAPI implements WeatherAPI {
             String weatherCondition = weather.getString("value");
 
             return new Weather(weatherCondition,temperature,pressure, humidity,windSpeed,windDirection);
+//            return new Weather("",0,0,0,0,0);
         } catch (Exception e){
             return null;
         }
