@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.ResultSet;
 
-/**
- * Created by kosshka_mebiusa on 17.10.15.
- */
+
 public class SignInServlet extends HttpServlet {
 
     @Override

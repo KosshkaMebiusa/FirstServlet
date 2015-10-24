@@ -2,9 +2,6 @@ package kosshka.mebiusa.Classes;
 
 import java.sql.*;
 
-/**
- * Created by kosshka_mebiusa on 16.10.15.
- */
 public class DataBase {
 
     private static String dbURL = "jdbc:mysql://localhost/";
