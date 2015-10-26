@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.util.List;
 
 
 public class SignInServlet extends HttpServlet {
@@ -22,28 +23,46 @@ public class SignInServlet extends HttpServlet {
 
 
         try {
-            ResultSet rs = DataBase.find(req.getParameter("login"), req.getParameter("password"));
+            ResultSet rs = DataBase.findUser(req.getParameter("login"), req.getParameter("password"));
             if (rs.next()){
                 req.setAttribute("login", rs.getString("login"));
                 req.setAttribute("city", rs.getString("city"));
 
                 WeatherAPI weatherAPI = new OpenWeatherMapAPI();
                 Weather weather = weatherAPI.getCurrentWeather(rs.getString("city"));
-                req.setAttribute("temperatureOWM", weather.temperature);
-                req.setAttribute("pressureOWM", weather.pressure);
-                req.setAttribute("humidityOWM",weather.humidity);
-                req.setAttribute("windspeedOWM", weather.windSpeed);
-                req.setAttribute("winddirectionOWM", weather.windDirection);
-                req.setAttribute("weatherConditionOWM", weather.weatherCondition);
+                req.setAttribute("temperatureOWM", weather.getTemperature());
+                req.setAttribute("pressureOWM", weather.getPressure());
+                req.setAttribute("humidityOWM", weather.getHumidity());
+                req.setAttribute("windspeedOWM", weather.getWindSpeed());
+                req.setAttribute("winddirectionOWM", weather.getWindDirection());
+                req.setAttribute("weatherConditionOWM", weather.getWeatherCondition());
 
                 weatherAPI = new WorldWeatherOnlineAPI();
                 weather = weatherAPI.getCurrentWeather(rs.getString("city"));
-                req.setAttribute("temperatureWWO", weather.temperature);
-                req.setAttribute("pressureWWO", weather.pressure);
-                req.setAttribute("humidityWWO",weather.humidity);
-                req.setAttribute("windspeedWWO", weather.windSpeed);
-                req.setAttribute("winddirectionWWO", weather.windDirection);
-                req.setAttribute("weatherConditionWWO", weather.weatherCondition);
+                req.setAttribute("temperatureWWO", weather.getTemperature());
+                req.setAttribute("pressureWWO", weather.getPressure());
+                req.setAttribute("humidityWWO", weather.getHumidity());
+                req.setAttribute("windspeedWWO", weather.getWindSpeed());
+                req.setAttribute("winddirectionWWO", weather.getWindDirection());
+                req.setAttribute("weatherConditionWWO", weather.getWeatherCondition());
+
+                List<Weather> weatherList = DataBase.allWeather();
+                req.setAttribute("weatherList", weatherList);
+
+/*                ArrayList list = new ArrayList();
+                Map author1 = new HashMap();
+                author1.put("name", "A");
+                author1.put("id", new Integer(1));
+                list.add(author1);
+                Map author2 = new HashMap();
+                author2.put("name", "B");
+                author2.put("id", new Integer(2));
+                list.add(author2);
+                Map author3 = new HashMap();
+                author3.put("name", "C");
+                author3.put("id", new Integer(3));
+                list.add(author3);
+                req.setAttribute("list", list);*/
 
                 RequestDispatcher rd = req.getRequestDispatcher("/weather.jsp");
                 rd.forward(req,resp);

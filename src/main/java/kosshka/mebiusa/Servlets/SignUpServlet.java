@@ -20,7 +20,7 @@ public class SignUpServlet extends HttpServlet {
 
 
         try {
-            DataBase.add(userLogin, userPassword, userCity);
+            DataBase.addUser(userLogin, userPassword, userCity);
             req.setAttribute("login", userLogin);
             req.setAttribute("city", userCity);
 
