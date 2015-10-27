@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FirstServlet.iml" filepath="$PROJECT_DIR$/FirstServlet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WeatherForecasting.iml" filepath="$PROJECT_DIR$/WeatherForecasting.iml" />
     </modules>
   </component>
 </project>
