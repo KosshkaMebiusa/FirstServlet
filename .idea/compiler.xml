@@ -24,9 +24,17 @@
         <processorPath useClasspath="true" />
         <module name="FirstServlet" />
       </profile>
+      <profile default="false" name="Annotation profile for WeatherForecasting" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="WeatherForecasting" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="FirstServlet" target="1.8" />
+      <module name="WeatherForecasting" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

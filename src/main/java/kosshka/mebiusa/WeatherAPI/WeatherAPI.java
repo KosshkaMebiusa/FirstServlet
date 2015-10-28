@@ -1,5 +1,6 @@
-package kosshka.mebiusa.Weather;
+package kosshka.mebiusa.WeatherAPI;
 
+import kosshka.mebiusa.DomainModel.Weather;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;

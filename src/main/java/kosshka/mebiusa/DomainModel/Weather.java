@@ -1,4 +1,4 @@
-package kosshka.mebiusa.Weather;
+package kosshka.mebiusa.DomainModel;
 
 import java.sql.Time;
 import java.util.Date;

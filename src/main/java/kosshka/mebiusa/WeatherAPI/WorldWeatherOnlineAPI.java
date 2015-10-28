@@ -1,5 +1,6 @@
-package kosshka.mebiusa.Weather;
+package kosshka.mebiusa.WeatherAPI;
 
+import kosshka.mebiusa.DomainModel.Weather;
 import org.json.JSONObject;
 
 /**
@@ -25,7 +26,7 @@ public class WorldWeatherOnlineAPI implements WeatherAPI {
             String weatherCondition = weather.getString("value");
 
             return new Weather(weatherCondition,temperature,pressure, humidity,windSpeed,windDirection);
-//            return new Weather("",0,0,0,0,0);
+//            return new WeatherAPI("",0,0,0,0,0);
         } catch (Exception e){
             return null;
         }

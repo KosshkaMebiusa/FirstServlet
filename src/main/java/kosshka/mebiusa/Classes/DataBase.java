@@ -1,6 +1,6 @@
 package kosshka.mebiusa.Classes;
 
-import kosshka.mebiusa.Weather.Weather;
+import kosshka.mebiusa.DomainModel.Weather;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class DataBase {
                     "  `city` VARCHAR(45) NULL," +
                     "  PRIMARY KEY (`idUsers`)," +
                     "  UNIQUE INDEX `login_UNIQUE` (`login`));");
-            stmt.execute("CREATE TABLE `mydatabase`.`Weather` (" +
+            stmt.execute("CREATE TABLE `mydatabase`.`WeatherAPI` (" +
                     "  `idWeather` INT NOT NULL AUTO_INCREMENT," +
                     "  `date` DATE NULL," +
                     "  `time` TIME NULL," +
@@ -77,7 +77,7 @@ public class DataBase {
     }
 
     private static ResultSet allWeatherRS() throws SQLException{
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Weather;");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM WeatherAPI;");
         return rs;
     }
 

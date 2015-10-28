@@ -1,10 +1,10 @@
 package kosshka.mebiusa.Servlets;
 
 import kosshka.mebiusa.Classes.DataBase;
-import kosshka.mebiusa.Weather.OpenWeatherMapAPI;
-import kosshka.mebiusa.Weather.Weather;
-import kosshka.mebiusa.Weather.WeatherAPI;
-import kosshka.mebiusa.Weather.WorldWeatherOnlineAPI;
+import kosshka.mebiusa.WeatherAPI.OpenWeatherMapAPI;
+import kosshka.mebiusa.DomainModel.Weather;
+import kosshka.mebiusa.WeatherAPI.WeatherAPI;
+import kosshka.mebiusa.WeatherAPI.WorldWeatherOnlineAPI;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
