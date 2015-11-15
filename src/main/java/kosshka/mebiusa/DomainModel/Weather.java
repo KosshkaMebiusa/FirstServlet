@@ -1,7 +1,7 @@
 package kosshka.mebiusa.DomainModel;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by kosshka_mebiusa on 21.10.15.

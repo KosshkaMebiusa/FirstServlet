@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>kosshka.mebiusa</groupId>
-  <artifactId>FirstServlet</artifactId>
+  <artifactId>WeatherForecasting</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>FirstServlet Maven Webapp</name>
+  <name>WeatherForecasting Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
 
@@ -36,33 +36,29 @@
     </dependency>
 
     <dependency>
-      <groupId>jstl</groupId>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>jsp-api</artifactId>
       <version>2.1</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>el-api</artifactId>
-      <version>6.0.26</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>jasper-el</artifactId>
-      <version>6.0.26</version>
-      <scope>provided</scope>
-    </dependency>
+
 
   </dependencies>
 
   <build>
-    <finalName>FirstServlet</finalName>
+    <finalName>WeatherForecasting</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

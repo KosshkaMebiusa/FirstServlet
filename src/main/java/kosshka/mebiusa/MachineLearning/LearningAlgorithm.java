@@ -1,7 +1,5 @@
 package kosshka.mebiusa.MachineLearning;
 
-import kosshka.mebiusa.DomainModel.Weather;
-
 import java.util.List;
 
 /**
@@ -9,9 +7,7 @@ import java.util.List;
  */
 public interface LearningAlgorithm<E> {
 
-    E algorithm(List<Weather> object);
-
-    void teach(List<Precedent> trainingSampel);
+    DecisionFunction<E> teach(List<Precedent<E>> trainingSampel);
 
     int lossFunction(Precedent<E> precedent);
 

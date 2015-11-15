@@ -1,7 +1,7 @@
 <%@ page import="java.util.*, java.text.*" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page isELIgnored = "false" %>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.ru/jstl/core" %> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>
@@ -13,7 +13,7 @@
 
     <h1>Hello, ${login}!</h1>
     <br>
-    <h2>
+<%--    <h2>
         Now in ${city}: <br><br>
         OpenWeatherMap:<br>
         ${weatherConditionOWM}<br>
@@ -23,20 +23,14 @@
         ${weatherConditionWWO}<br>
         ${temperatureWWO} degrees, ${pressureWWO} mb, humiduty ${humidityWWO}% <br>
         wind: speed ${windspeedWWO} m/s, direction: ${winddirectionWWO} degrees <br>
-     </h2>
+     </h2>--%>
 
-<%-- Here are all authors matching your search critera:
-    <table>
-      <TH>Name</th>
-      <TH>Id</th>
-      <c:forEach items="${authors}" var="current">
-        <tr>
-          <td><c:out value="${current.name}" /><td>
-          <td><c:out value="${current.id}" /><td>
-        </tr>
-      </c:forEach>
-    </table>
---%>
+    <FORM name="form1" action="download" method="post">
+        <BR><BR>
+        <INPUT type="submit" value="Download Historical Data"/>
+        <BR><BR>
+    </FORM>
+
 
      <table border="1px" cellpadding="8px">
              <tr>
@@ -51,10 +45,10 @@
              </tr>
              <c:forEach items="${weatherList}" var="weather" >
                 <tr>
-                    <td>!!!${weatherList[0].date}</td>
-                    <td>!!!${weatherList[0].time}</td>
-                    <td>${weather[0].weatherCondition}</td>
-                    <td>${weatherList[c].temperature}</td>
+                    <td>${weather.date}</td>
+                    <td>${weather.time}</td>
+                    <td>${weather.weatherCondition}</td>
+                    <td>${weather.temperature}</td>
                     <td>${weather.pressure}</td>
                     <td>${weather.humidity}</td>
                     <td>${weather.windSpeed}</td>

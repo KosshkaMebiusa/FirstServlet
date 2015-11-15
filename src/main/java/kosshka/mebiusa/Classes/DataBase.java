@@ -71,13 +71,16 @@ public class DataBase {
         return rs;
     }
 
-    public static void addWeather(String login, String password, String city) throws SQLException{
-        stmt.execute(String.format("INSERT INTO Users (login, password, city) VALUES ('%s', '%s', '%s');",
-                login, password, city));
+    public static void addWeather(Weather weather) throws SQLException{
+
+        stmt.execute(String.format("INSERT INTO Weather (date, time, discription, temperature, pressure, windSpeed, windDirection," +
+                        "humidity) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+                weather.getDate(),weather.getTime(), weather.getWeatherCondition(), weather.getTemperature(),
+                weather.getPressure(), weather.getWindSpeed(), weather.getWindDirection(), weather.getHumidity()));
     }
 
     private static ResultSet allWeatherRS() throws SQLException{
-        ResultSet rs = stmt.executeQuery("SELECT * FROM WeatherAPI;");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Weather ORDER BY date, time;");
         return rs;
     }
 
@@ -85,7 +88,7 @@ public class DataBase {
         try {
             ResultSet rs = allWeatherRS();
             List<Weather> weatherList = new ArrayList<>();
-            if (rs.next()) {
+            while (rs.next()) {
                 Weather weather = new Weather(rs.getDate("date"), rs.getTime("time"), rs.getString("discription"), rs.getInt("temperature"), rs.getInt("pressure"),
                         rs.getInt("humidity"), rs.getInt("windSpeed"), rs.getInt("windDirection"));
                 weatherList.add(weather);

@@ -33,7 +33,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FirstServlet" target="1.8" />
       <module name="WeatherForecasting" target="1.8" />
     </bytecodeTargetLevel>
   </component>

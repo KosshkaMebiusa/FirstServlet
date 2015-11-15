@@ -2,31 +2,49 @@ package kosshka.mebiusa.MachineLearning;
 
 import kosshka.mebiusa.DomainModel.Weather;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherLA implements LearningAlgorithm<Weather> {
 
-    LearningAlgorithm<Integer> temperatureLA, pressureLA, humidityLA, windSpeedLA, windDirectionLA;
     LearningAlgorithm<String> weatherConditionLA;
+    LearningAlgorithm<Integer> temperatureLA;
 
-    public Weather algorithm(List<Weather> object){
-        String weatherCondition = weatherConditionLA.algorithm(object);
-        int temperature = temperatureLA.algorithm(object);
-        int pressure = pressureLA.algorithm(object);
-        int humidity = humidityLA.algorithm(object);
-        int windSpeed = windDirectionLA.algorithm(object);
-        int windDirection = windDirectionLA.algorithm(object);
+    DecisionFunction<Weather> algorithm;
 
-        return new Weather(weatherCondition, temperature, pressure, humidity, windSpeed, windDirection);
-    }
+    public DecisionFunction<Weather> teach(List<Precedent<Weather>> trainingSample){
 
-    public void teach(List<Precedent> trainingSample){
-        weatherConditionLA.teach(trainingSample);
-        temperatureLA.teach(trainingSample);
-        pressureLA.teach(trainingSample);
-        humidityLA.teach(trainingSample);
-        windDirectionLA.teach(trainingSample);
-        windSpeedLA.teach(trainingSample);
+        //выборки для отдельных алгоритмов
+        List<Precedent<String>> weatherConditionSample = new ArrayList<>();
+        List<Precedent<Integer>> temperatureSample = new ArrayList<>();
+
+        for (Precedent<Weather> precedent : trainingSample){
+
+            Precedent<String> weatherConditionPrecedent = new Precedent();
+            weatherConditionPrecedent.object = precedent.object;
+            weatherConditionPrecedent.answer = precedent.answer.getWeatherCondition();
+            weatherConditionSample.add(weatherConditionPrecedent);
+
+            Precedent<Integer> tempPrecedent = new Precedent();
+            tempPrecedent.object = precedent.object;
+            tempPrecedent.answer = precedent.answer.getTemperature();
+            temperatureSample.add(tempPrecedent);
+
+        }
+        DecisionFunction<Weather> algorithm = (List<Weather> object) ->{
+            Weather weather;
+
+            DecisionFunction<String> weatherConditionAlgorithm = weatherConditionLA.teach(weatherConditionSample);
+            String weatherCondition = weatherConditionAlgorithm.calculate(object);
+
+            DecisionFunction<Integer> tempAlgorithm = temperatureLA.teach(temperatureSample);
+            Integer temperature = tempAlgorithm.calculate(object);
+
+            weather = new Weather(weatherCondition,temperature,0,0,0,0);
+            return  weather;
+        };
+        this.algorithm = algorithm;
+        return  algorithm;
     }
 
     public int lossFunction(Precedent<Weather> precedent){
@@ -38,7 +56,7 @@ public class WeatherLA implements LearningAlgorithm<Weather> {
         final int cWindSpeed = 1;
         final int cWeatherCondition = 1;
 
-        Weather answer = algorithm(precedent.object);
+        Weather answer = algorithm.calculate(precedent.object);
         int loss = 0;
         loss += cTemperature * Math.abs(precedent.answer.getTemperature() - answer.getTemperature());
         loss += cPressure * Math.abs(precedent.answer.getPressure() - answer.getPressure());
