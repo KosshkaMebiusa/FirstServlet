@@ -12,13 +12,13 @@ public class WeatherLA implements LearningAlgorithm<Weather> {
 
     DecisionFunction<Weather> algorithm;
 
-    public DecisionFunction<Weather> teach(List<Precedent<Weather>> trainingSample){
+    public DecisionFunction<Weather> teach(Sample trainingSample){
 
         //выборки для отдельных алгоритмов
         List<Precedent<String>> weatherConditionSample = new ArrayList<>();
         List<Precedent<Integer>> temperatureSample = new ArrayList<>();
 
-        for (Precedent<Weather> precedent : trainingSample){
+        for (Precedent<Weather> precedent : trainingSample.sample){
 
             Precedent<String> weatherConditionPrecedent = new Precedent();
             weatherConditionPrecedent.object = precedent.object;
@@ -34,14 +34,15 @@ public class WeatherLA implements LearningAlgorithm<Weather> {
         DecisionFunction<Weather> algorithm = (List<Weather> object) ->{
             Weather weather;
 
-            DecisionFunction<String> weatherConditionAlgorithm = weatherConditionLA.teach(weatherConditionSample);
-            String weatherCondition = weatherConditionAlgorithm.calculate(object);
-
-            DecisionFunction<Integer> tempAlgorithm = temperatureLA.teach(temperatureSample);
-            Integer temperature = tempAlgorithm.calculate(object);
-
-            weather = new Weather(weatherCondition,temperature,0,0,0,0);
-            return  weather;
+//            DecisionFunction<String> weatherConditionAlgorithm = weatherConditionLA.teach(weatherConditionSample);
+//            String weatherCondition = weatherConditionAlgorithm.calculate(object);
+//
+//            DecisionFunction<Integer> tempAlgorithm = temperatureLA.teach(temperatureSample);
+//            Integer temperature = tempAlgorithm.calculate(object);
+//
+//            weather = new Weather(weatherCondition,temperature,0,0,0,0);
+//            return  weather;
+            return null;
         };
         this.algorithm = algorithm;
         return  algorithm;

@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class Precedent<E> {
 
-    List<Weather> object;
-    E answer;
+    public List<Weather> object;
+    public E answer;
 
 
 }
