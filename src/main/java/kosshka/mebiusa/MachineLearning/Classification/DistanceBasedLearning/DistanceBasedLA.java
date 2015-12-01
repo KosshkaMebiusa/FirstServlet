@@ -9,7 +9,7 @@ import java.util.Set;
 
 public abstract class DistanceBasedLA implements LearningAlgorithm<String>{
 
-    int distance(Weather weather1, Weather weather2){
+    int distance(List<Weather> object1, List<Weather> object2){
         final int cTemperature = 1;
         final int cPressure = 1;
         final int cHumidity = 1;
@@ -18,13 +18,16 @@ public abstract class DistanceBasedLA implements LearningAlgorithm<String>{
         final int cWeatherCondition = 1;
 
         int dist = 0;
-        dist += cTemperature * Math.abs(weather1.getTemperature() - weather2.getTemperature());
-        dist += cPressure * Math.abs(weather1.getPressure() - weather2.getPressure());
-        dist += cHumidity * Math.abs(weather1.getHumidity() - weather2.getHumidity());
-        dist += cWindDirection * Math.abs(weather1.getWindDirection() - weather2.getWindDirection());
-        dist += cWindSpeed * Math.abs(weather1.getWindSpeed() - weather2.getWindSpeed());
-        if (weather1.getWeatherCondition() == weather2.getWeatherCondition()){
-            dist += cWeatherCondition;
+        for (int i = 0; i < object1.size()-1; i++) {
+            dist += cTemperature * Math.abs(object1.get(i).getTemperature() - object2.get(i).getTemperature());
+            dist += cPressure * Math.abs(object1.get(i).getPressure() - object2.get(i).getPressure());
+            dist += cHumidity * Math.abs(object1.get(i).getHumidity() - object2.get(i).getHumidity());
+            dist += cWindDirection * Math.abs(object1.get(i).getWindDirection() - object2.get(i).getWindDirection());
+            dist += cWindSpeed * Math.abs(object1.get(i).getWindSpeed() - object2.get(i).getWindSpeed());
+            if (object1.get(i).getWeatherCondition() == object2.get(i).getWeatherCondition()){
+                dist += cWeatherCondition;
+        }
+
         }
         return dist;
     }

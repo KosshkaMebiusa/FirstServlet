@@ -4,12 +4,8 @@ import kosshka.mebiusa.DomainModel.Weather;
 import kosshka.mebiusa.MachineLearning.DecisionFunction;
 import kosshka.mebiusa.MachineLearning.Precedent;
 import kosshka.mebiusa.MachineLearning.Sample;
-
 import java.util.List;
 
-/**
- * Created by kosshka_mebiusa on 15.11.15.
- */
 public class NearestNeighborLA extends DistanceBasedLA {
 
     DecisionFunction<String> algorithm;
@@ -24,21 +20,21 @@ public class NearestNeighborLA extends DistanceBasedLA {
     }
 
     @Override
-    public DecisionFunction<String> teach(Sample trainingSampel) {
+    public DecisionFunction<String> teach(Sample trainingSample) {
         DecisionFunction<String> algorithm = (List<Weather> object) ->{
-            Weather weather;
+            int minDist = Integer.MAX_VALUE;
+            String minDistAnswer = "";
+            for (Precedent<String> precedent : trainingSample.sample) {
+                int curDist = distance(precedent.object,object);
+                if (curDist < minDist){
+                    minDist = curDist;
+                    minDistAnswer = precedent.answer;
+                }
+            }
+            return minDistAnswer;
+        };
 
-//            DecisionFunction<String> weatherConditionAlgorithm = weatherConditionLA.teach(weatherConditionSample);
-//            String weatherCondition = weatherConditionAlgorithm.calculate(object);
-//
-//            DecisionFunction<Integer> tempAlgorithm = temperatureLA.teach(temperatureSample);
-//            Integer temperature = tempAlgorithm.calculate(object);
-//
-//            weather = new Weather(weatherCondition,temperature,0,0,0,0);
-//            return  weather;
-            return null;
-        };;
-
+        this.algorithm = algorithm;
         return algorithm;
     }
 

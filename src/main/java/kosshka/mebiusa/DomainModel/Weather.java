@@ -112,4 +112,10 @@ public class Weather {
     public void setTime(Time time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return (weatherCondition +' ' + temperature + ' ' + pressure + ' ' + humidity + ' ' +
+                    windSpeed + ' ' + windDirection);
+    }
 }

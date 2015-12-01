@@ -5,7 +5,7 @@ package kosshka.mebiusa.MachineLearning;
  */
 public interface LearningAlgorithm<E> {
 
-    DecisionFunction<E> teach(Sample trainingSampel);
+    DecisionFunction<E> teach(Sample trainingSample);
 
     int lossFunction(Precedent<E> precedent);
 

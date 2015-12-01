@@ -20,6 +20,10 @@
         <servlet-name>download</servlet-name>
         <servlet-class>kosshka.mebiusa.Servlets.DownloadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>test</servlet-name>
+        <servlet-class>kosshka.mebiusa.Servlets.TestLAServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>welcome</servlet-name>
@@ -36,6 +40,10 @@
     <servlet-mapping>
         <servlet-name>download</servlet-name>
         <url-pattern>/download</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>test</servlet-name>
+        <url-pattern>/test</url-pattern>
     </servlet-mapping>
 
 

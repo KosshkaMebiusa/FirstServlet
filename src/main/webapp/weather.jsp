@@ -31,6 +31,11 @@
         <BR><BR>
     </FORM>
 
+    <FORM name="form2" action="test" method="post">
+        <BR><BR>
+        <INPUT type="submit" value="Test LA"/>
+        <BR><BR>
+    </FORM>
 
      <table border="1px" cellpadding="8px">
              <tr>
@@ -43,16 +48,16 @@
                  <th>Wind Speed</th>
                  <th>Wind Direction</th>
              </tr>
-             <c:forEach items="${weatherList}" var="weather" >
+             <c:forEach items="${weatherList}" var="item" >
                 <tr>
-                    <td>${weather.date}</td>
-                    <td>${weather.time}</td>
-                    <td>${weather.weatherCondition}</td>
-                    <td>${weather.temperature}</td>
-                    <td>${weather.pressure}</td>
-                    <td>${weather.humidity}</td>
-                    <td>${weather.windSpeed}</td>
-                    <td>${weather.windDirection}</td>
+                    <td>${item.date}</td>
+                    <td>${item.time}</td>
+                    <td>${item.weatherCondition}</td>
+                    <td>${item.temperature}</td>
+                    <td>${item.pressure}</td>
+                    <td>${item.humidity}</td>
+                    <td>${item.windSpeed}</td>
+                    <td>${item.windDirection}</td>
                 </tr>
              </c:forEach>
          </table>

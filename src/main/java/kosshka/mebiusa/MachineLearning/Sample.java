@@ -2,13 +2,14 @@ package kosshka.mebiusa.MachineLearning;
 
 import kosshka.mebiusa.DomainModel.Weather;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Sample {
     public List<Precedent> sample = new LinkedList<>();
 
-    Sample (List<Weather> weatherList, int N, int propety){
+    public Sample (List<Weather> weatherList, int N, int propety){
 
         for (int i=N; i < weatherList.size(); i++){
             Precedent precedent;
@@ -40,7 +41,10 @@ public class Sample {
                 default:
                     precedent = new Precedent();
             }
+            precedent.object = new ArrayList<>();
             precedent.object.addAll(weatherList.subList(i-N, i));
+
+            sample.add(precedent);
 
 
         }
