@@ -51,6 +51,7 @@ public class DataBase {
                     "  `pressure` INT NULL," +
                     "  `windSpeed` INT NULL," +
                     "  `windDirection` VARCHAR(45) NULL," +
+                    "  `humidity` VARCHAR(45) NULL," +
                     "  PRIMARY KEY (`idWeather`));");
 
         }

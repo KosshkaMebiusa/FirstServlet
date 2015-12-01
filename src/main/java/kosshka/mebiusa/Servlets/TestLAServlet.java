@@ -34,8 +34,9 @@ public class TestLAServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DecisionFunction<String> algorithm;
         List<Weather> weatherList = DataBase.allWeather();
-        Sample trainingSample = new Sample(weatherList.subList(0,(int)weatherList.size()/2),5,Weather.WEATHER_DISCRIPTION);
-        Sample testSample = new Sample(weatherList.subList((int)weatherList.size()/2+1,weatherList.size()-1),5,Weather.WEATHER_DISCRIPTION);
+        int N = 2;
+        Sample trainingSample = new Sample(weatherList.subList(0,(int)weatherList.size()/2),N,Weather.WEATHER_DISCRIPTION);
+        Sample testSample = new Sample(weatherList.subList((int)weatherList.size()/2+1,weatherList.size()-1),N,Weather.WEATHER_DISCRIPTION);
         LearningAlgorithm<String> learningAlgorithm = new NearestNeighborLA();
         algorithm = learningAlgorithm.teach(trainingSample);
 
@@ -52,6 +53,8 @@ public class TestLAServlet extends HttpServlet {
 
         req.setAttribute("list", results);
         req.setAttribute("Q", Q);
+        String algorithmName = req.getParameter("algorithm");
+        req.setAttribute("algorithm", algorithmName);
         RequestDispatcher rd = req.getRequestDispatcher("/testResult.jsp");
         rd.forward(req,resp);
 

@@ -24,7 +24,7 @@ public abstract class DistanceBasedLA implements LearningAlgorithm<String>{
             dist += cHumidity * Math.abs(object1.get(i).getHumidity() - object2.get(i).getHumidity());
             dist += cWindDirection * Math.abs(object1.get(i).getWindDirection() - object2.get(i).getWindDirection());
             dist += cWindSpeed * Math.abs(object1.get(i).getWindSpeed() - object2.get(i).getWindSpeed());
-            if (object1.get(i).getWeatherCondition() == object2.get(i).getWeatherCondition()){
+            if (object1.get(i).getWeatherCondition().equals(object2.get(i).getWeatherCondition())){
                 dist += cWeatherCondition;
         }
 

@@ -50,10 +50,10 @@ public class NearestNeighborLA extends DistanceBasedLA {
 
     @Override
     public double Q(Sample testSample) {
-        int result=0;
+        double result=0;
         for (Precedent<String> precedent: testSample.sample){
             result += lossFunction(precedent);
         }
-        return result;
+        return (result / testSample.sample.size());
     }
 }

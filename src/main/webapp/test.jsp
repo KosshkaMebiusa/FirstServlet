@@ -9,7 +9,7 @@
     <h1>Please, choose algorithm and parametrs</h1>
     <br>
 
-    <select name="Algorithm">
+    <select name="algorithm">
         <option value="NN"> NearestNeighbor</option>
     </select>
 
