@@ -34,7 +34,7 @@ public class TestLAServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DecisionFunction<String> algorithm;
         List<Weather> weatherList = DataBase.allWeather();
-        int N = 2;
+        int N = Integer.parseInt(req.getParameter("n"));
         Sample trainingSample = new Sample(weatherList.subList(0,(int)weatherList.size()/2),N,Weather.WEATHER_DISCRIPTION);
         Sample testSample = new Sample(weatherList.subList((int)weatherList.size()/2+1,weatherList.size()-1),N,Weather.WEATHER_DISCRIPTION);
         LearningAlgorithm<String> learningAlgorithm = new NearestNeighborLA();

@@ -1,7 +1,6 @@
 <%@ page import="java.util.*, java.text.*" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page isELIgnored="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 <head>
@@ -26,7 +25,7 @@
         <div id="navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="/signin" class="active">DataBase</a></li>
+                <li><a href="/signin">DataBase</a></li>
                 <li><a href="#">Services</a>
 
                     <div class="dd-holder">
@@ -43,7 +42,7 @@
                     </div>
                 </li>
                 <li><a href="test">Test LA</a></li>
-                <li><a href="signin.jsp">SignIn</a></li>
+                <li><a href="signin.jsp" class="active">SignIn</a></li>
                 <li><a href="signup.jsp">SignUp</a></li>
             </ul>
         </div>
@@ -69,57 +68,32 @@
                             href="http://www.worldweatheronline.com">World Weather Online</a></noscript>
                 </center>
             </div>
-            <div class="post">
-                <h2>Bla-bla-bla</h2>
-                <img src="css/images/machine learning_1.jpg" width="284" alt=""/>
-
-                <p>Some more text. It is not pretty good without this block.</p>
-                <a href="#" class="more">more</a>
-            </div>
         </div>
         <div id="content">
             <div class="col">
                 <div class="post">
-                    <h2>Hello, ${login}!</h2>
-                    <center>
-                        <FORM name="form1" class="my_form" action="download" method="post">
-                            <br>
-                            <INPUT type="submit" value="Download Historical Data"/>
-                        </FORM>
 
-                        <br>
 
-                        <FORM name="form2" class="my_form" action="test" method="post">
-                            <INPUT type="submit" value="Test LA"/>
+                    <form class="signin_form" action="signin" method="post" name="signin_form">
+                        <h2>SignIn</h2>
+                        <ul>
+                            <li>
+                                <label>Login:</label>
+                                <input type="text" name="login" required/>
+                            </li>
+                            <li>
+                                <label>Pasword:</label>
+                                <input type="password" name="password" required/>
+                            </li>
+                            <li>
+                                <input type="submit" name="signin" value="Sign In"/>
+                            </li>
+                        </ul>
+                    </form>
 
-                        </FORM>
-                    </center>
-                    <br>
-                    <table border="1px" cellpadding="8px">
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Weather Condition</th>
-                            <th>Temperature</th>
-                            <th>Pressure</th>
-                            <th>Humidity</th>
-                            <th>Wind Speed</th>
-                            <th>Wind Direction</th>
-                        </tr>
-                        <c:forEach items="${weatherList}" var="item">
-                            <tr>
-                                <td>${item.date}</td>
-                                <td>${item.time}</td>
-                                <td>${item.weatherCondition}</td>
-                                <td>${item.temperature}</td>
-                                <td>${item.pressure}</td>
-                                <td>${item.humidity}</td>
-                                <td>${item.windSpeed}</td>
-                                <td>${item.windDirection}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-
+                    <FORM name="form1" action="" method="POST">
+                        <BR>
+                    </FORM>
 
                     <div class="cl">&nbsp;</div>
                 </div>

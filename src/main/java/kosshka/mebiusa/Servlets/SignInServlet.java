@@ -20,6 +20,7 @@ public class SignInServlet extends HttpServlet {
 
 
         try {
+            DataBase.start();
             ResultSet rs = DataBase.findUser(req.getParameter("login"), req.getParameter("password"));
             if (rs.next()){
                 String city = rs.getString("city");

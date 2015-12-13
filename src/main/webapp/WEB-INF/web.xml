@@ -27,7 +27,7 @@
 
     <servlet-mapping>
         <servlet-name>welcome</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern>/welcom</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>signup</servlet-name>
