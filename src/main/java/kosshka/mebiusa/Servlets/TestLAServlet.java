@@ -3,11 +3,7 @@ package kosshka.mebiusa.Servlets;
 import kosshka.mebiusa.Classes.DataBase;
 import kosshka.mebiusa.DomainModel.Weather;
 import kosshka.mebiusa.MachineLearning.Classification.DistanceBasedLearning.NearestNeighborLA;
-import kosshka.mebiusa.MachineLearning.DecisionFunction;
-import kosshka.mebiusa.MachineLearning.LearningAlgorithm;
-import kosshka.mebiusa.MachineLearning.Precedent;
-import kosshka.mebiusa.MachineLearning.Sample;
-import kosshka.mebiusa.MachineLearning.TestResult;
+import kosshka.mebiusa.MachineLearning.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

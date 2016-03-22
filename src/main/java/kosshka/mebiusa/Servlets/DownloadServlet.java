@@ -23,7 +23,7 @@ public class DownloadServlet extends HttpServlet {
 
         WeatherAPI weatherAPI = new WorldWeatherOnlineAPI();
 
-        String dateString = "2015-12-01";
+        String dateString = "2015-12-13";
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date date = null;
         try {

@@ -25,8 +25,8 @@
 
         <div id="navigation">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="/signin" class="active">DataBase</a></li>
+                <li><a href="">Home</a></li>
+                <li><a href="" class="active">DataBase</a></li>
                 <li><a href="#">Services</a>
 
                     <div class="dd-holder">
@@ -42,7 +42,7 @@
                         <div class="dd-b"></div>
                     </div>
                 </li>
-                <li><a href="test">Test LA</a></li>
+                <li><a href="">Test LA</a></li>
                 <li><a href="signin.jsp">SignIn</a></li>
                 <li><a href="signup.jsp">SignUp</a></li>
             </ul>
