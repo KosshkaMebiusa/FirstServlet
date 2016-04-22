@@ -10,6 +10,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 
+import static javafx.scene.input.KeyCode.R;
+
 public interface WeatherAPI {
     Weather getCurrentWeather(String city);
 
@@ -42,15 +44,21 @@ public interface WeatherAPI {
 
             //connection
             URL url = new URL(String.format(URL, ID, city, date.toString()));
-            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+            HttpURLConnection connection =
+                    (HttpURLConnection)url.openConnection();
 
-            //reading jsonobject
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuffer json = new StringBuffer();
-            String tmp = "";
-            while ((tmp=reader.readLine())!=null)
+/*            connection.addRequestProperty("x-api-key",
+                    context.getString(R.string.open_weather_maps_app_id));*/
+
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream()));
+
+            StringBuffer json = new StringBuffer(1024);
+            String tmp="";
+            while((tmp=reader.readLine())!=null)
                 json.append(tmp).append("\n");
             reader.close();
+
             JSONObject data = new JSONObject(json.toString());
 
             return data;

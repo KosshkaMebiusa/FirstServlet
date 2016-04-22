@@ -5,6 +5,7 @@ import kosshka.mebiusa.DomainModel.Weather;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.IntBinaryOperator;
 
 public class DataBase {
 
@@ -42,16 +43,16 @@ public class DataBase {
                     "  `city` VARCHAR(45) NULL," +
                     "  PRIMARY KEY (`idUsers`)," +
                     "  UNIQUE INDEX `login_UNIQUE` (`login`));");
-            stmt.execute("CREATE TABLE `mydatabase`.`WeatherAPI` (" +
+            stmt.execute("CREATE TABLE `mydatabase`.`Weather` (" +
                     "  `idWeather` INT NOT NULL AUTO_INCREMENT," +
                     "  `date` DATE NULL," +
                     "  `time` TIME NULL," +
                     "  `discription` VARCHAR(45) NULL," +
                     "  `temperature` INT NULL," +
+                    "  `humidity` VARCHAR(45) NULL," +
                     "  `pressure` INT NULL," +
                     "  `windSpeed` INT NULL," +
                     "  `windDirection` VARCHAR(45) NULL," +
-                    "  `humidity` VARCHAR(45) NULL," +
                     "  PRIMARY KEY (`idWeather`));");
 
         }
@@ -74,10 +75,15 @@ public class DataBase {
 
     public static void addWeather(Weather weather) throws SQLException{
 
-        stmt.execute(String.format("INSERT INTO Weather (date, time, discription, temperature, pressure, windSpeed, windDirection," +
-                        "humidity) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
-                weather.getDate(),weather.getTime(), weather.getWeatherCondition(), weather.getTemperature(),
-                weather.getPressure(), weather.getWindSpeed(), weather.getWindDirection(), weather.getHumidity()));
+
+        String str = "INSERT INTO Weather (date, time, discription, temperature, pressure, windSpeed, windDirection," +
+                "humidity) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');";
+                str = String.format(str,
+                        weather.getDate().toString(),weather.getTime().toString(),
+                        weather.getWeatherCondition().toString(), Integer.toString(weather.getTemperature()),
+                        Integer.toString(weather.getPressure()), Integer.toString(weather.getWindSpeed()),
+                        Integer.toString(weather.getWindDirection()), Integer.toString(weather.getHumidity()));
+        stmt.execute(str);
     }
 
     private static ResultSet allWeatherRS() throws SQLException{

@@ -1,6 +1,7 @@
 package kosshka.mebiusa.WeatherAPI;
 
 import kosshka.mebiusa.DomainModel.Weather;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,10 +16,10 @@ import java.util.List;
 
 public class WorldWeatherOnlineAPI implements WeatherAPI {
 
-    private static final String WORLD_WEATHER_ONLINE_API_URL = "http://api.worldweatheronline.com/free/v2/weather.ashx?key=%s&q=%s&fx=no&format=json";
-    private static final String WORLD_WEATHER_ONLINE_API_URL_HISTORICAL = "http://api.worldweatheronline.com/free/v2/past-weather.ashx?key=%s&q=%s&format=json&date=%s";
+    private static final String WORLD_WEATHER_ONLINE_API_URL = "http://api.worldweatheronline.com/premium/v1/weather.ashx?key=%s&q=%s&fx=no&format=json";
+    private static final String WORLD_WEATHER_ONLINE_API_URL_HISTORICAL = "http://api.worldweatheronline.com/premium/v1/past-weather.ashx?key=%s&q=%s&format=json&date=%s";
 
-    private static final String WORLD_WEATHER_ONLINE_API_ID = "2165acc893e58ba65d64584d61a94";
+    private static final String WORLD_WEATHER_ONLINE_API_ID = "39f3b73243614dd5a89164352162204";
 
     private Weather getWeatherFromJSON (JSONObject main) throws JSONException{
 
