@@ -81,29 +81,10 @@
                 <div class="post">
                     <h2>Test ${algorithm}</h2>
                     <p>
-                        Q = ${Q}
+                        P = ${P}
+                        <br>
+                        Parametres: ${params}
                     </p>
-
-                    <table border="1px" cellpadding="8px">
-                        <tr>
-                            <th>Object</th>
-                            <th>LA Answer</th>
-                            <th>Real Answer</th>
-                        </tr>
-                        <c:forEach items="${list}" var="item">
-                            <tr>
-                                <td>
-
-                                    <c:forEach items="${item.object}" var="weather">
-                                        ${weather}<br>
-                                    </c:forEach>
-
-                                </td>
-                                <td>${item.answer}</td>
-                                <td>${item.realAnswer}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
 
                     <div class="cl">&nbsp;</div>
                 </div>

@@ -77,15 +77,21 @@
                         <h2>Please, choose algorithm and parametrs</h2>
                         <ul>
                             <li>
-                                <select name="algorithm">
-                                    <option value="NN"> NearestNeighbor</option>
+                                <select name="item">
+                                    <option value="1"> Temperature</option>
+                                    <option value="2"> Pressure</option>
+                                    <option value="3"> Humidity</option>
+                                    <option value="4"> Wind Speed</option>
+                                    <option value="4"> Wind Direction</option>
+                                    <option value="6"> Weather Condition</option>
                                 </select>
 
                             </li>
                             <li>
-                                <select name="n">
-                                    <option value="5"> 5</option>
+                                <select name="algorithm">
+                                    <option value="kNN"> KNearestNeighbor</option>
                                 </select>
+
                             </li>
                             <li>
                                 <INPUT type="submit" value="Test!"/>

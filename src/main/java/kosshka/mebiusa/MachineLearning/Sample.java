@@ -14,7 +14,7 @@ public class Sample {
         for (int i=N; i < weatherList.size(); i++){
             Precedent precedent;
             switch (propety){
-                case Weather.TEPMERATURE:
+                case Weather.TEMPERATURE:
                     precedent = new Precedent<Integer>();
                     precedent.answer = weatherList.get(i).getTemperature();
                     break;
@@ -34,7 +34,7 @@ public class Sample {
                     precedent = new Precedent<Integer>();
                     precedent.answer = weatherList.get(i).getWindDirection();
                     break;
-                case Weather.WEATHER_DISCRIPTION:
+                case Weather.WEATHER_CONDITION:
                     precedent = new Precedent<String>();
                     precedent.answer = weatherList.get(i).getWeatherCondition();
                     break;

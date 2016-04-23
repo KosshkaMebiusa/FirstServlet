@@ -8,12 +8,12 @@ import java.sql.Date;
  */
 public class Weather {
 
-    public final static int TEPMERATURE = 1;
+    public final static int TEMPERATURE = 1;
     public final static int PRESSURE = 2;
     public final static int HUMIDITY = 3;
     public final static int WIND_SPEED = 4;
     public final static int WIND_DIRECTION = 5;
-    public final static int WEATHER_DISCRIPTION = 6;
+    public final static int WEATHER_CONDITION = 6;
 
 
     private String weatherCondition;

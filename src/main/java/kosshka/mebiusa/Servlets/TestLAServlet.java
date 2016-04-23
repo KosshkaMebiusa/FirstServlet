@@ -1,6 +1,8 @@
 package kosshka.mebiusa.Servlets;
 
 import kosshka.mebiusa.Classes.DataBase;
+import kosshka.mebiusa.Classes.KNearestNeighborsML;
+import kosshka.mebiusa.Classes.MachineLearning;
 import kosshka.mebiusa.DomainModel.Weather;
 import kosshka.mebiusa.MachineLearning.Classification.DistanceBasedLearning.NearestNeighborLA;
 import kosshka.mebiusa.MachineLearning.*;
@@ -28,11 +30,11 @@ public class TestLAServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DecisionFunction<String> algorithm;
+/*        DecisionFunction<String> algorithm;
         List<Weather> weatherList = DataBase.allWeather();
         int N = Integer.parseInt(req.getParameter("n"));
-        Sample trainingSample = new Sample(weatherList.subList(0,(int)weatherList.size()/2),N,Weather.WEATHER_DISCRIPTION);
-        Sample testSample = new Sample(weatherList.subList((int)weatherList.size()/2+1,weatherList.size()-1),N,Weather.WEATHER_DISCRIPTION);
+        Sample trainingSample = new Sample(weatherList.subList(0,(int)weatherList.size()/2),N,Weather.WEATHER_CONDITION);
+        Sample testSample = new Sample(weatherList.subList((int)weatherList.size()/2+1,weatherList.size()-1),N,Weather.WEATHER_CONDITION);
         LearningAlgorithm<String> learningAlgorithm = new NearestNeighborLA();
         algorithm = learningAlgorithm.teach(trainingSample);
 
@@ -51,6 +53,26 @@ public class TestLAServlet extends HttpServlet {
         req.setAttribute("Q", Q);
         String algorithmName = req.getParameter("algorithm");
         req.setAttribute("algorithm", algorithmName);
+        RequestDispatcher rd = req.getRequestDispatcher("/testResult.jsp");
+        rd.forward(req,resp);*/
+
+        List<Weather> weatherList = DataBase.allWeather();
+        String algorithmName = req.getParameter("algorithm");
+        int weatherItem = Integer.parseInt(req.getParameter("item"));
+        double P=0;
+        String paramStr = "";
+        switch (algorithmName){
+            case "kNN":
+                KNearestNeighborsML kNN = new KNearestNeighborsML(weatherList, weatherItem);
+                kNN.bestParametrs();
+                paramStr = "k = " + kNN.getK() + ", N = " + kNN.getN();
+                P = kNN.getP();
+                break;
+        }
+
+        req.setAttribute("algorithm", algorithmName);
+        req.setAttribute("P", P);
+        req.setAttribute("params", paramStr);
         RequestDispatcher rd = req.getRequestDispatcher("/testResult.jsp");
         rd.forward(req,resp);
 
