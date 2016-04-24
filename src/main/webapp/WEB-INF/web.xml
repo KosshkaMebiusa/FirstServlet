@@ -24,6 +24,10 @@
         <servlet-name>test</servlet-name>
         <servlet-class>kosshka.mebiusa.Servlets.TestLAServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>choose</servlet-name>
+        <servlet-class>kosshka.mebiusa.Servlets.ChooseLAServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>welcome</servlet-name>
@@ -44,6 +48,10 @@
     <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>choose</servlet-name>
+        <url-pattern>/choose</url-pattern>
     </servlet-mapping>
 
 

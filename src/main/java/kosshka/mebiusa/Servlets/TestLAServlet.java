@@ -1,11 +1,11 @@
 package kosshka.mebiusa.Servlets;
 
 import kosshka.mebiusa.Classes.DataBase;
-import kosshka.mebiusa.Classes.KNearestNeighborsML;
-import kosshka.mebiusa.Classes.MachineLearning;
+import kosshka.mebiusa.Classes.ML.KDtreeKNNML;
+import kosshka.mebiusa.Classes.ML.KNearestNeighborsML;
+import kosshka.mebiusa.Classes.ML.MLAlgorithm;
+import kosshka.mebiusa.Classes.ML.MeanFeatureVotingML;
 import kosshka.mebiusa.DomainModel.Weather;
-import kosshka.mebiusa.MachineLearning.Classification.DistanceBasedLearning.NearestNeighborLA;
-import kosshka.mebiusa.MachineLearning.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,17 +57,26 @@ public class TestLAServlet extends HttpServlet {
 
         List<Weather> weatherList = DataBase.allWeather();
         String algorithmName = req.getParameter("algorithm");
-        int weatherItem = Integer.parseInt(req.getParameter("item"));
+        int weatherItem = Integer.parseInt(req.getParameter("testitem"));
         double P=0;
         String paramStr = "";
+        MLAlgorithm algorithm = null;
         switch (algorithmName){
             case "kNN":
-                KNearestNeighborsML kNN = new KNearestNeighborsML(weatherList, weatherItem);
-                kNN.bestParametrs();
-                paramStr = "k = " + kNN.getK() + ", N = " + kNN.getN();
-                P = kNN.getP();
+                algorithm = new KNearestNeighborsML(weatherList, weatherItem);
+                break;
+            case "KDtreeKNN":
+                algorithm = new KDtreeKNNML(weatherList, weatherItem);
+                break;
+
+            case "MFV":
+                algorithm = new MeanFeatureVotingML(weatherList, weatherItem);
                 break;
         }
+        algorithm.bestParametrs();
+        paramStr = algorithm.getParameteresString();
+        P = algorithm.getP();
+
 
         req.setAttribute("algorithm", algorithmName);
         req.setAttribute("P", P);

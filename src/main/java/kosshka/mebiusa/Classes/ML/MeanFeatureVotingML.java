@@ -1,8 +1,9 @@
-package kosshka.mebiusa.Classes;
+package kosshka.mebiusa.Classes.ML;
 
 import kosshka.mebiusa.DomainModel.Weather;
 import net.sf.javaml.classification.Classifier;
 import net.sf.javaml.classification.KNearestNeighbors;
+import net.sf.javaml.classification.MeanFeatureVotingClassifier;
 import net.sf.javaml.classification.evaluation.CrossValidation;
 import net.sf.javaml.classification.evaluation.PerformanceMeasure;
 import net.sf.javaml.core.Dataset;
@@ -14,20 +15,14 @@ import java.util.Random;
 /**
  * Created by kosshka_mebiusa on 23.04.16.
  */
-public class KNearestNeighborsML extends MachineLearning {
+public class MeanFeatureVotingML extends MLAlgorithm{
 
     List<Weather> weatherList;
     int weatherItem;
 
-    public KNearestNeighborsML(List<Weather> weatherList, int weatherItem){
+    public MeanFeatureVotingML(List<Weather> weatherList, int weatherItem){
         this.weatherList = weatherList;
         this.weatherItem = weatherItem;
-    }
-
-    private int k;
-
-    public int getK() {
-        return k;
     }
 
     private int N;
@@ -44,13 +39,11 @@ public class KNearestNeighborsML extends MachineLearning {
 
     public void bestParametrs(){
 
-        int bestk = 0;
         int bestN = 0;
         double bestp = 0;
-        for (int iN = min; iN < max; iN++)
-            for (int ik = min; ik < max; ik++) {
-                Dataset data = makeDataset(weatherList, iN, weatherItem);
-                Classifier knn = new KNearestNeighbors(ik);
+        for (int iN = min; iN < max; iN++){
+                Dataset data = MachineLearning.makeDataset(weatherList, iN, weatherItem);
+                Classifier knn = new MeanFeatureVotingClassifier();
                 CrossValidation cv = new CrossValidation(knn);
                 Map<Object, PerformanceMeasure> p = cv.crossValidation(data, 5, new Random(1));
                 double Psum=0;
@@ -61,15 +54,17 @@ public class KNearestNeighborsML extends MachineLearning {
 
                 if (Psum>bestp){
                     bestp = Psum;
-                    bestk = ik;
                     bestN = iN;
                 }
             }
 
-        k = bestk;
         N = bestN;
         P = bestp;
 
     }
 
+    @Override
+    public String getParameteresString() {
+        return "N = " + N;
+    }
 }

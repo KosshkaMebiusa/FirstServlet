@@ -73,11 +73,11 @@
                 <div class="post">
 
 
-                    <form class="my_form" action="test" method="get" name="signup_form">
+                    <form class="my_form" action="test" method="get" name="test_form">
                         <h2>Please, choose algorithm and parametrs</h2>
                         <ul>
                             <li>
-                                <select name="item">
+                                <select name="testitem">
                                     <option value="1"> Temperature</option>
                                     <option value="2"> Pressure</option>
                                     <option value="3"> Humidity</option>
@@ -90,6 +90,8 @@
                             <li>
                                 <select name="algorithm">
                                     <option value="kNN"> KNearestNeighbor</option>
+                                    <option value="KDtreeKNN"> KDtreeKNN</option>
+                                    <option value="MFV"> MeanFeatureVoting</option>
                                 </select>
 
                             </li>
@@ -97,6 +99,23 @@
                                 <INPUT type="submit" value="Test!"/>
                             </li>
 
+                        </ul>
+                    </form>
+
+                    <form class="my_form" action="choose" method="post" name="choose_form">
+                        <h2>Please, choose item</h2>
+                        <ul>
+                            <select name="chooseitem">
+                                <option value="1"> Temperature</option>
+                                <option value="2"> Pressure</option>
+                                <option value="3"> Humidity</option>
+                                <option value="4"> Wind Speed</option>
+                                <option value="4"> Wind Direction</option>
+                                <option value="6"> Weather Condition</option>
+                            </select>
+                            <li>
+                                <INPUT type="submit" value="Choose best algorithm"/>
+                            </li>
                         </ul>
                     </form>
 

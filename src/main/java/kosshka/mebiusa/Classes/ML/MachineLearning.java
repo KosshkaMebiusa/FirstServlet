@@ -1,4 +1,4 @@
-package kosshka.mebiusa.Classes;
+package kosshka.mebiusa.Classes.ML;
 
 import kosshka.mebiusa.DomainModel.Weather;
 import net.sf.javaml.core.*;
@@ -8,10 +8,7 @@ import java.util.List;
 /**
  * Created by kosshka_mebiusa on 23.04.16.
  */
-public abstract class MachineLearning {
-
-    protected int min = 1;
-    protected int max = 10;
+public class MachineLearning {
 
     //make instance from weatherList with k element starting with k element. value is weather item type
     private static Instance makeInstance(List<Weather> weatherList, int k, int N, int weatherItem) {
@@ -66,7 +63,23 @@ public abstract class MachineLearning {
         return data;
     }
 
-    public abstract void bestParametrs();
+    public static MLAlgorithm bestAlgorithm(List<Weather> weatherList, int weatherItem){
+        MLAlgorithm[] mlAlgorithms = new MLAlgorithm[]
+                {new KNearestNeighborsML(weatherList, weatherItem), new KDtreeKNNML(weatherList, weatherItem),
+                new MeanFeatureVotingML(weatherList, weatherItem)};
+
+        double bestP=0;
+        MLAlgorithm bestAlgorithm = null;
+
+        for (MLAlgorithm mlAlgorithm: mlAlgorithms) {
+            mlAlgorithm.bestParametrs();
+            double P = mlAlgorithm.getP();
+            if (P>bestP) bestP = P;
+            bestAlgorithm = mlAlgorithm;
+        }
+
+        return bestAlgorithm;
+    }
 
 }
 
