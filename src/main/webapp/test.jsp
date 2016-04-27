@@ -92,6 +92,9 @@
                                     <option value="kNN"> KNearestNeighbor</option>
                                     <option value="KDtreeKNN"> KDtreeKNN</option>
                                     <option value="MFV"> MeanFeatureVoting</option>
+                                    <%--<option value="AbstrMean">AbstractMean</option> --%>
+                                    <option value="NearestMean">NearestMean</option>
+                                    <option value="ZeroR">ZeroR</option>
                                 </select>
 
                             </li>

@@ -49,10 +49,10 @@ public class DataBase {
                     "  `time` TIME NULL," +
                     "  `discription` VARCHAR(45) NULL," +
                     "  `temperature` INT NULL," +
-                    "  `humidity` VARCHAR(45) NULL," +
+                    "  `humidity` INT NULL," +
                     "  `pressure` INT NULL," +
                     "  `windSpeed` INT NULL," +
-                    "  `windDirection` VARCHAR(45) NULL," +
+                    "  `windDirection` INT NULL," +
                     "  PRIMARY KEY (`idWeather`));");
 
         }

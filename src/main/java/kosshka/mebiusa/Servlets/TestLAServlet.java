@@ -1,10 +1,7 @@
 package kosshka.mebiusa.Servlets;
 
 import kosshka.mebiusa.Classes.DataBase;
-import kosshka.mebiusa.Classes.ML.KDtreeKNNML;
-import kosshka.mebiusa.Classes.ML.KNearestNeighborsML;
-import kosshka.mebiusa.Classes.ML.MLAlgorithm;
-import kosshka.mebiusa.Classes.ML.MeanFeatureVotingML;
+import kosshka.mebiusa.Classes.ML.*;
 import kosshka.mebiusa.DomainModel.Weather;
 
 import javax.servlet.RequestDispatcher;
@@ -72,6 +69,16 @@ public class TestLAServlet extends HttpServlet {
             case "MFV":
                 algorithm = new MeanFeatureVotingML(weatherList, weatherItem);
                 break;
+            case "AbstrMean":
+                algorithm = new AbstractMeanML(weatherList,weatherItem);
+                break;
+            case "NearestMean":
+                algorithm = new NearestMeanML(weatherList,weatherItem);
+                break;
+            case "ZeroR":
+                algorithm = new ZeroRML(weatherList,weatherItem);
+                break;
+
         }
         algorithm.bestParametrs();
         paramStr = algorithm.getParameteresString();

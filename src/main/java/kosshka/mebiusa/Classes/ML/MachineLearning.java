@@ -66,7 +66,8 @@ public class MachineLearning {
     public static MLAlgorithm bestAlgorithm(List<Weather> weatherList, int weatherItem){
         MLAlgorithm[] mlAlgorithms = new MLAlgorithm[]
                 {new KNearestNeighborsML(weatherList, weatherItem), new KDtreeKNNML(weatherList, weatherItem),
-                new MeanFeatureVotingML(weatherList, weatherItem)};
+                new MeanFeatureVotingML(weatherList, weatherItem),/* new AbstractMeanML(weatherList, weatherItem),*/
+                new NearestMeanML(weatherList,weatherItem), new ZeroRML(weatherList,weatherItem)};
 
         double bestP=0;
         MLAlgorithm bestAlgorithm = null;
