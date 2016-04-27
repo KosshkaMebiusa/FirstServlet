@@ -78,6 +78,9 @@ public class TestLAServlet extends HttpServlet {
             case "ZeroR":
                 algorithm = new ZeroRML(weatherList,weatherItem);
                 break;
+            case "RandTree":
+                algorithm = new RandomTreeML(weatherList,weatherItem);
+                break;
 
         }
         algorithm.bestParametrs();

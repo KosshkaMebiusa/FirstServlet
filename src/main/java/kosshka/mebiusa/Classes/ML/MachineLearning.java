@@ -75,8 +75,10 @@ public class MachineLearning {
         for (MLAlgorithm mlAlgorithm: mlAlgorithms) {
             mlAlgorithm.bestParametrs();
             double P = mlAlgorithm.getP();
-            if (P>bestP) bestP = P;
-            bestAlgorithm = mlAlgorithm;
+            if (P>bestP) {
+                bestP = P;
+                bestAlgorithm = mlAlgorithm;
+            }
         }
 
         return bestAlgorithm;

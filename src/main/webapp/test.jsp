@@ -89,12 +89,18 @@
                             </li>
                             <li>
                                 <select name="algorithm">
-                                    <option value="kNN"> KNearestNeighbor</option>
-                                    <option value="KDtreeKNN"> KDtreeKNN</option>
-                                    <option value="MFV"> MeanFeatureVoting</option>
-                                    <%--<option value="AbstrMean">AbstractMean</option> --%>
-                                    <option value="NearestMean">NearestMean</option>
-                                    <option value="ZeroR">ZeroR</option>
+                                    <optgroup label="Metric">
+                                        <option value="kNN"> KNearestNeighbor</option>
+                                        <option value="KDtreeKNN"> KDtreeKNN</option>
+                                        <option value="MFV"> MeanFeatureVoting</option>
+                                        <%--<option value="AbstrMean">AbstractMean</option> --%>
+                                        <option value="NearestMean">NearestMean</option>
+                                        <option value="ZeroR">ZeroR</option>
+                                    </optgroup>
+<%--                                    <optgroup label="Tree">
+                                        <option value="RandTree"> RandomTree</option>
+                                    </optgroup>--%>
+                                    
                                 </select>
 
                             </li>
