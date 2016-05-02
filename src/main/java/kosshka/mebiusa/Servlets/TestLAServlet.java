@@ -55,7 +55,7 @@ public class TestLAServlet extends HttpServlet {
         List<Weather> weatherList = DataBase.allWeather();
         String algorithmName = req.getParameter("algorithm");
         int weatherItem = Integer.parseInt(req.getParameter("testitem"));
-        double P=0;
+        double Fmeasure=0;
         String paramStr = "";
         MLAlgorithm algorithm = null;
         switch (algorithmName){
@@ -85,11 +85,11 @@ public class TestLAServlet extends HttpServlet {
         }
         algorithm.bestParametrs();
         paramStr = algorithm.getParameteresString();
-        P = algorithm.getP();
+        Fmeasure = algorithm.getFm();
 
 
         req.setAttribute("algorithm", algorithmName);
-        req.setAttribute("P", P);
+        req.setAttribute("Fmeasure", Math.round(Fmeasure*100));
         req.setAttribute("params", paramStr);
         RequestDispatcher rd = req.getRequestDispatcher("/testResult.jsp");
         rd.forward(req,resp);

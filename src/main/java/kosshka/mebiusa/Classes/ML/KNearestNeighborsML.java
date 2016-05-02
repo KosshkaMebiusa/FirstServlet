@@ -1,5 +1,7 @@
 package kosshka.mebiusa.Classes.ML;
 
+import kosshka.mebiusa.Classes.Distances.LinearDistance;
+import kosshka.mebiusa.Classes.Distances.QuadDistance;
 import kosshka.mebiusa.DomainModel.Weather;
 import net.sf.javaml.classification.Classifier;
 import net.sf.javaml.classification.KNearestNeighbors;
@@ -36,45 +38,65 @@ public class KNearestNeighborsML extends MLAlgorithm {
         return N;
     }
 
-    private double P;
+    private double Fm;
 
-    public double getP() {
-        return P;
+    public double getFm() {
+        return Fm;
     }
+
+    private String distance;
+
+    public void getDistance(String distance) {
+        this.distance = distance;
+    }
+
+
 
     public void bestParametrs(){
 
         int bestk = 0;
         int bestN = 0;
-        double bestp = 0;
+        double bestF = 0;
         for (int iN = min; iN < max; iN++)
             for (int ik = min; ik < max; ik++) {
                 Dataset data = MachineLearning.makeDataset(weatherList, iN, weatherItem);
-                Classifier knn = new KNearestNeighbors(ik);
+
+                LinearDistance ld = new LinearDistance();
+                distance = "Linear";
+                Classifier knn = new KNearestNeighbors(ik, ld);
                 CrossValidation cv = new CrossValidation(knn);
                 Map<Object, PerformanceMeasure> p = cv.crossValidation(data, 5, new Random(1));
-                double Psum=0;
-                for (PerformanceMeasure performanceMeasure:p.values()){
-                    Psum += performanceMeasure.getAccuracy();
-                }
-                Psum = Psum / p.values().size();
-
-                if (Psum>bestp){
-                    bestp = Psum;
+                double F = super.Fmeasure(p);
+                if (F>bestF){
+                    bestF = F;
                     bestk = ik;
                     bestN = iN;
                 }
+
+                QuadDistance qd = new QuadDistance();
+                distance = "Quad";
+                knn = new KNearestNeighbors(ik, ld);
+                cv = new CrossValidation(knn);
+                p = cv.crossValidation(data, 5, new Random(1));
+                F = super.Fmeasure(p);
+                if (F>bestF){
+                    bestF = F;
+                    bestk = ik;
+                    bestN = iN;
+                }
+
             }
 
         k = bestk;
         N = bestN;
-        P = bestp;
+        Fm = bestF;
 
     }
 
     @Override
     public String getParameteresString() {
-        return "N = " + N + ", k = " + k;
+        return "N = " + N + ", k = " + k + ", " + distance + " Distanse";
     }
+
 
 }

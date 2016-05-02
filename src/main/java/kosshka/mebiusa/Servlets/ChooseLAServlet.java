@@ -25,7 +25,7 @@ public class ChooseLAServlet extends HttpServlet {
         String algorithmName = mlAlgorithm.getClass().toString();
 
         req.setAttribute("algorithm", algorithmName);
-        req.setAttribute("P", mlAlgorithm.getP());
+        req.setAttribute("Fmeasure", Math.round(mlAlgorithm.getFm()*100));
         req.setAttribute("params", mlAlgorithm.getParameteresString());
         RequestDispatcher rd = req.getRequestDispatcher("/testResult.jsp");
         rd.forward(req,resp);

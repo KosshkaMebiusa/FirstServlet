@@ -81,7 +81,7 @@
                 <div class="post">
                     <h2>Test ${algorithm}</h2>
                     <p>
-                        P = ${P}
+                        F-measure = ${Fmeasure} %
                         <br>
                         Parametres: ${params}
                     </p>

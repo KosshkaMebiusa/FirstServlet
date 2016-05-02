@@ -31,36 +31,31 @@ public class ZeroRML extends MLAlgorithm {
         return N;
     }
 
-    private double P;
+    private double Fm;
 
-    public double getP() {
-        return P;
+    public double getFm() {
+        return Fm;
     }
 
     @Override
     public void bestParametrs() {
 
         int bestN = 0;
-        double bestp = 0;
+        double bestF = 0;
         for (int iN = min; iN < max; iN++){
             Dataset data = MachineLearning.makeDataset(weatherList, iN, weatherItem);
             Classifier knn = new ZeroR();
             CrossValidation cv = new CrossValidation(knn);
             Map<Object, PerformanceMeasure> p = cv.crossValidation(data, 5, new Random(1));
-            double Psum=0;
-            for (PerformanceMeasure performanceMeasure:p.values()){
-                Psum += performanceMeasure.getAccuracy();
-            }
-            Psum = Psum / p.values().size();
-
-            if (Psum>bestp){
-                bestp = Psum;
+            double F = super.Fmeasure(p);
+            if (F>bestF){
+                bestF = F;
                 bestN = iN;
             }
         }
 
         N = bestN;
-        P = bestp;
+        Fm = bestF;
 
     }
 
