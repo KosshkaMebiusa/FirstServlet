@@ -1,3 +1,8 @@
+<%@ page import="java.util.*, java.text.*" %>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <title>Machine Learning in Weather Forecasting</title>
@@ -20,8 +25,8 @@
 
         <div id="navigation">
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="" methods="post">DataBase</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="">DataBase</a></li>
                 <li><a href="#">Services</a>
 
                     <div class="dd-holder">
@@ -38,7 +43,7 @@
                     </div>
                 </li>
                 <li><a href="">Test LA</a></li>
-                <li><a href="signin.jsp">SignIn</a></li>
+                <li><a href="signin.jsp" class="active">SignIn</a></li>
                 <li><a href="signup.jsp">SignUp</a></li>
             </ul>
         </div>
@@ -64,52 +69,39 @@
                             href="http://www.worldweatheronline.com">World Weather Online</a></noscript>
                 </center>
             </div>
-            <div class="post">
-                <h2>Chosse DataBase to start</h2>
-                <FORM name="form2" class="my_form" action="chooseDB" method="post">
-                    <INPUT type="submit" value="Choose Database"/>
-
-                </FORM>
-            </div>
         </div>
         <div id="content">
             <div class="col">
                 <div class="post">
-                    <h2>Welcome!</h2>
-                    <img src="css/images/Machine_Learning.png" alt="" class="right"/>
 
-                    <p>This site is dedicated to my diploma. The theme is "Machine Learning in Weather Forecasting".
-                        Here you can learn something about machine learning ande test some algorithms.
-                        Here will be a lot of another text, don't forget to fill. </p>
+                    <form class="my_form" action="chooseDB" method="get" name="choose_form">
+                        <h2>Please, choose database</h2>
+                        <ul>
+                            <select name="databases">
+                                 <c:forEach items="${databases}" var="item">
+                                    <option value="${item}">${item}</option>
+                                 </c:forEach>
+                            </select>
+                            <li>
+                                <INPUT type="submit" value="Choose database"/>
+                            </li>
+                        </ul>
+                    </form>
 
-                    <div class="cl">&nbsp;</div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="post">
-                    <h2>About Machine Learning</h2>
-                    <img src="css/images/large-icon.png" height="100" alt="" class="right"/>
+                    <form class="my_form" action="createDB" method="post" name="choose_form">
+                        <h2></h2>
+                        <ul>
+                            <label>DB name:</label>
+                            <input type="text" name="dbname" required/>
+                            <li>
+                                <INPUT type="submit" value="Create database"/>
+                            </li>
+                        </ul>
+                    </form>
 
-                    <p>Machine learning is a subfield of computer science that evolved from the study of pattern
-                        recognition and computational learning theory in artificial intelligence. Machine learning
-                        explores the study and construction of algorithms that can learn from and make predictions on
-                        data. Such algorithms operate by building a model from example inputs in order to make
-                        data-driven predictions or decisions, rather than following strictly static program
-                        instructions.
-                        Machine learning is closely related to computational statistics; a discipline that aims at the
-                        design of algorithm for implementing statistical methods on computers. It has strong ties to
-                        mathematical optimization, which delivers methods, theory and application domains to the field.
-                        Machine learning is employed in a range of computing tasks where designing and programming
-                        explicit algorithms is infeasible. Example applications include spam filtering, optical
-                        character recognition (OCR), search engines and computer vision. Machine learning is
-                        sometimes conflated with data mining, although that focuses more on exploratory data
-                        analysis.[6] Machine learning and pattern recognition "can be viewed as two facets of the same
-                        field."[3]:vii
-                        When employed in industrial contexts, machine learning methods may be referred to as predictive
-                        analytics or predictive modelling. </p>
+
 
                     <div class="cl">&nbsp;</div>
-                    <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" class="more">more</a>
                 </div>
             </div>
         </div>

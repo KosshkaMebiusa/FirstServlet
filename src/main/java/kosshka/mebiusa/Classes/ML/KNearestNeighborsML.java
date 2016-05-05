@@ -57,13 +57,13 @@ public class KNearestNeighborsML extends MLAlgorithm {
         int bestk = 0;
         int bestN = 0;
         double bestF = 0;
+        String bestDistanse = "";
         for (int iN = min; iN < max; iN++)
             for (int ik = min; ik < max; ik++) {
                 Dataset data = MachineLearning.makeDataset(weatherList, iN, weatherItem);
 
-                LinearDistance ld = new LinearDistance();
-                distance = "Linear";
-                Classifier knn = new KNearestNeighbors(ik, ld);
+                distance = "Default";
+                Classifier knn = new KNearestNeighbors(ik);
                 CrossValidation cv = new CrossValidation(knn);
                 Map<Object, PerformanceMeasure> p = cv.crossValidation(data, 5, new Random(1));
                 double F = super.Fmeasure(p);
@@ -71,11 +71,35 @@ public class KNearestNeighborsML extends MLAlgorithm {
                     bestF = F;
                     bestk = ik;
                     bestN = iN;
+                    bestDistanse = distance;
                 }
+
+//                for (int bin = 0; bin < 32; bin++){
+//                    String str = Integer.toBinaryString(bin);
+//                    str = "00000"+str;
+//                    str = str.substring(str.length()-5);
+//                    char[] chars = str.toCharArray();
+//                    int[] array = new int[iN*5];
+//                    for (int i = 0; i<5; i++ ){
+//                        array[i] = (int)chars[i]-48;
+//                    }
+                    LinearDistance ld = new LinearDistance();
+                    distance = "Linear";
+                    knn = new KNearestNeighbors(ik, ld);
+                    cv = new CrossValidation(knn);
+                    p = cv.crossValidation(data, 5, new Random(1));
+                    F = super.Fmeasure(p);
+                    if (F>bestF){
+                        bestF = F;
+                        bestk = ik;
+                        bestN = iN;
+                        bestDistanse = distance;
+                    }
+//                }
 
                 QuadDistance qd = new QuadDistance();
                 distance = "Quad";
-                knn = new KNearestNeighbors(ik, ld);
+                knn = new KNearestNeighbors(ik, qd);
                 cv = new CrossValidation(knn);
                 p = cv.crossValidation(data, 5, new Random(1));
                 F = super.Fmeasure(p);
@@ -83,6 +107,7 @@ public class KNearestNeighborsML extends MLAlgorithm {
                     bestF = F;
                     bestk = ik;
                     bestN = iN;
+                    bestDistanse = distance;
                 }
 
             }
@@ -90,6 +115,7 @@ public class KNearestNeighborsML extends MLAlgorithm {
         k = bestk;
         N = bestN;
         Fm = bestF;
+        distance = bestDistanse;
 
     }
 

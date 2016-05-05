@@ -67,6 +67,13 @@
                             href="http://www.worldweatheronline.com">World Weather Online</a></noscript>
                 </center>
             </div>
+            <div class="post">
+                <h2>Chosse DataBase to start</h2>
+                <FORM name="form2" class="my_form" action="chooseDB" method="post">
+                    <INPUT type="submit" value="Choose Database"/>
+
+                </FORM>
+            </div>
         </div>
         <div id="content">
             <div class="col">
@@ -111,7 +118,7 @@
                         </ul>
                     </form>
 
-                    <form class="my_form" action="choose" method="post" name="choose_form">
+                    <form class="my_form" action="chooseLA" method="post" name="choose_form">
                         <h2>Please, choose item</h2>
                         <ul>
                             <select name="chooseitem">

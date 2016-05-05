@@ -4,6 +4,7 @@ import kosshka.mebiusa.DomainModel.Weather;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.function.IntBinaryOperator;
 
@@ -28,7 +29,18 @@ public class DataBase {
         return connection;
     }
 
-    public static void start() throws SQLException{
+    public static List<String> getDatabases() throws SQLException{
+        connection = getDBConnection();
+        stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SHOW DATABASES");
+        List<String> list = new LinkedList<>();
+        while (rs.next()){
+            list.add(rs.getString(1));
+        }
+        return list;
+    }
+
+/*    public static void start() throws SQLException{
         connection = getDBConnection();
         stmt = connection.createStatement();
         try {
@@ -56,6 +68,29 @@ public class DataBase {
                     "  PRIMARY KEY (`idWeather`));");
 
         }
+    }*/
+
+    public static void start(String database) throws SQLException{
+        stmt.execute("USE " + database);
+    }
+
+    public static void createDB(String database) throws SQLException{
+        connection = getDBConnection();
+        stmt = connection.createStatement();
+            stmt.execute("CREATE DATABASE " + database + ";");
+            stmt.execute("USE " + database);
+            stmt.execute("CREATE TABLE `" + database + "`.`Weather` (" +
+                    "  `idWeather` INT NOT NULL AUTO_INCREMENT," +
+                    "  `date` DATE NULL," +
+                    "  `time` TIME NULL," +
+                    "  `discription` VARCHAR(45) NULL," +
+                    "  `temperature` INT NULL," +
+                    "  `humidity` INT NULL," +
+                    "  `pressure` INT NULL," +
+                    "  `windSpeed` INT NULL," +
+                    "  `windDirection` INT NULL," +
+                    "  PRIMARY KEY (`idWeather`));");
+
     }
 
     public static ResultSet findUser(String login, String password) throws SQLException{

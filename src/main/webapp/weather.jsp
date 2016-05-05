@@ -70,11 +70,11 @@
                 </center>
             </div>
             <div class="post">
-                <h2>Bla-bla-bla</h2>
-                <img src="css/images/machine learning_1.jpg" width="284" alt=""/>
+                <h2>Chosse DataBase to start</h2>
+                <FORM name="form2" class="my_form" action="chooseDB" method="post">
+                    <INPUT type="submit" value="Choose Database"/>
 
-                <p>Some more text. It is not pretty good without this block.</p>
-                <a href="#" class="more">more</a>
+                </FORM>
             </div>
         </div>
         <div id="content">

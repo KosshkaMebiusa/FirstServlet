@@ -16,7 +16,7 @@ public class WelcomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
-            DataBase.start();
+//            DataBase.start();
         } catch (Exception e){
 
         }

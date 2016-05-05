@@ -25,8 +25,16 @@
         <servlet-class>kosshka.mebiusa.Servlets.TestLAServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>choose</servlet-name>
+        <servlet-name>chooseLA</servlet-name>
         <servlet-class>kosshka.mebiusa.Servlets.ChooseLAServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>chooseDB</servlet-name>
+        <servlet-class>kosshka.mebiusa.Servlets.ChooseDatabaseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>createDB</servlet-name>
+        <servlet-class>kosshka.mebiusa.Servlets.CreateDatabaseServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -50,8 +58,16 @@
         <url-pattern>/test</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>choose</servlet-name>
-        <url-pattern>/choose</url-pattern>
+        <servlet-name>chooseLA</servlet-name>
+        <url-pattern>/chooseLA</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>chooseDB</servlet-name>
+        <url-pattern>/chooseDB</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createDB</servlet-name>
+        <url-pattern>/createDB</url-pattern>
     </servlet-mapping>
 
 

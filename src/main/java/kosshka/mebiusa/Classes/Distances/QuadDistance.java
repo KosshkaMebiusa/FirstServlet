@@ -18,6 +18,6 @@ public class QuadDistance implements DistanceMeasure {
 
     @Override
     public boolean compare(double v, double v1) {
-        return Math.abs(v-v1)<0.1;
+        return v<v1;
     }
 }
